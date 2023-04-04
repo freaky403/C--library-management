@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="libraryManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="book_borrow">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="book_id" Type="Int64" Nullable="false" />
+    <Property Name="borrow_id" Type="Int64" Nullable="false" />
+    <Property Name="reader_id" Type="Int64" Nullable="false" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="book" Relationship="Self.book_borrow_book_id_foreign" FromRole="book_borrow" ToRole="books" />
+    <NavigationProperty Name="borrow" Relationship="Self.book_borrow_borrow_id_foreign" FromRole="book_borrow" ToRole="borrows" />
+    <NavigationProperty Name="reader" Relationship="Self.book_borrow_reader_id_foreign" FromRole="book_borrow" ToRole="readers" />
+  </EntityType>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="author" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="publisher" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="published" Type="Int32" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="book_borrow" Relationship="Self.book_borrow_book_id_foreign" FromRole="books" ToRole="book_borrow" />
+    <NavigationProperty Name="category_book" Relationship="Self.category_book_book_id_foreign" FromRole="books" ToRole="category_book" />
+  </EntityType>
+  <EntityType Name="borrow">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int64" Nullable="false" />
+    <Property Name="borrowed_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="expires_at" Type="DateTime" Precision="3" />
+    <Property Name="return_at" Type="DateTime" Precision="3" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="book_borrow" Relationship="Self.book_borrow_borrow_id_foreign" FromRole="borrows" ToRole="book_borrow" />
+    <NavigationProperty Name="user" Relationship="Self.borrows_user_id_foreign" FromRole="borrows" ToRole="users" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="category_book" Relationship="Self.category_book_category_id_foreign" FromRole="categories" ToRole="category_book" />
+  </EntityType>
+  <EntityType Name="category_book">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_id" Type="Int64" Nullable="false" />
+    <Property Name="book_id" Type="Int64" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="book" Relationship="Self.category_book_book_id_foreign" FromRole="category_book" ToRole="books" />
+    <NavigationProperty Name="category" Relationship="Self.category_book_category_id_foreign" FromRole="category_book" ToRole="categories" />
+  </EntityType>
+  <EntityType Name="permission_role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permission_id" Type="Int64" Nullable="false" />
+    <Property Name="role_id" Type="Int64" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="permission" Relationship="Self.permission_role_permission_id_foreign" FromRole="permission_role" ToRole="permissions" />
+    <NavigationProperty Name="role" Relationship="Self.permission_role_role_id_foreign" FromRole="permission_role" ToRole="roles" />
+  </EntityType>
+  <EntityType Name="permission">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="permission1" Type="Int32" Nullable="false" />
+    <Property Name="key" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="permission_role" Relationship="Self.permission_role_permission_id_foreign" FromRole="permissions" ToRole="permission_role" />
+  </EntityType>
+  <EntityType Name="reader">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+    <Property Name="gender" Type="Int16" />
+    <Property Name="phone_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="expires_at" Type="DateTime" Precision="3" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="book_borrow" Relationship="Self.book_borrow_reader_id_foreign" FromRole="readers" ToRole="book_borrow" />
+  </EntityType>
+  <EntityType Name="role_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_id" Type="Int64" Nullable="false" />
+    <Property Name="user_id" Type="Int64" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="role" Relationship="Self.role_user_role_id_foreign" FromRole="role_user" ToRole="roles" />
+    <NavigationProperty Name="user" Relationship="Self.role_user_user_id_foreign" FromRole="role_user" ToRole="users" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role1" Type="Int32" Nullable="false" />
+    <Property Name="key" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="permission_role" Relationship="Self.permission_role_role_id_foreign" FromRole="roles" ToRole="permission_role" />
+    <NavigationProperty Name="role_user" Relationship="Self.role_user_role_id_foreign" FromRole="roles" ToRole="role_user" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="191" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="updated_at" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="borrows" Relationship="Self.borrows_user_id_foreign" FromRole="users" ToRole="borrows" />
+    <NavigationProperty Name="role_user" Relationship="Self.role_user_user_id_foreign" FromRole="users" ToRole="role_user" />
+  </EntityType>
+  <Association Name="book_borrow_book_id_foreign">
+    <End Role="books" Type="Self.book" Multiplicity="1" />
+    <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="books">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="book_borrow">
+        <PropertyRef Name="book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="book_borrow_borrow_id_foreign">
+    <End Role="borrows" Type="Self.borrow" Multiplicity="1" />
+    <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="borrows">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="book_borrow">
+        <PropertyRef Name="borrow_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="book_borrow_reader_id_foreign">
+    <End Role="readers" Type="Self.reader" Multiplicity="1" />
+    <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="readers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="book_borrow">
+        <PropertyRef Name="reader_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="category_book_book_id_foreign">
+    <End Role="books" Type="Self.book" Multiplicity="1" />
+    <End Role="category_book" Type="Self.category_book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="books">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="category_book">
+        <PropertyRef Name="book_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="borrows_user_id_foreign">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="borrows" Type="Self.borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="borrows">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="category_book_category_id_foreign">
+    <End Role="categories" Type="Self.category" Multiplicity="1" />
+    <End Role="category_book" Type="Self.category_book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="category_book">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="permission_role_permission_id_foreign">
+    <End Role="permissions" Type="Self.permission" Multiplicity="1" />
+    <End Role="permission_role" Type="Self.permission_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permissions">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permission_role">
+        <PropertyRef Name="permission_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="permission_role_role_id_foreign">
+    <End Role="roles" Type="Self.role" Multiplicity="1" />
+    <End Role="permission_role" Type="Self.permission_role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="permission_role">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="role_user_role_id_foreign">
+    <End Role="roles" Type="Self.role" Multiplicity="1" />
+    <End Role="role_user" Type="Self.role_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="role_user">
+        <PropertyRef Name="role_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="role_user_user_id_foreign">
+    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="role_user" Type="Self.role_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="role_user">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="libraryManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="book_borrow" EntityType="Self.book_borrow" />
+    <EntitySet Name="books" EntityType="Self.book" />
+    <EntitySet Name="borrows" EntityType="Self.borrow" />
+    <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="category_book" EntityType="Self.category_book" />
+    <EntitySet Name="permission_role" EntityType="Self.permission_role" />
+    <EntitySet Name="permissions" EntityType="Self.permission" />
+    <EntitySet Name="readers" EntityType="Self.reader" />
+    <EntitySet Name="role_user" EntityType="Self.role_user" />
+    <EntitySet Name="roles" EntityType="Self.role" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="book_borrow_book_id_foreign" Association="Self.book_borrow_book_id_foreign">
+      <End Role="books" EntitySet="books" />
+      <End Role="book_borrow" EntitySet="book_borrow" />
+    </AssociationSet>
+    <AssociationSet Name="book_borrow_borrow_id_foreign" Association="Self.book_borrow_borrow_id_foreign">
+      <End Role="borrows" EntitySet="borrows" />
+      <End Role="book_borrow" EntitySet="book_borrow" />
+    </AssociationSet>
+    <AssociationSet Name="book_borrow_reader_id_foreign" Association="Self.book_borrow_reader_id_foreign">
+      <End Role="readers" EntitySet="readers" />
+      <End Role="book_borrow" EntitySet="book_borrow" />
+    </AssociationSet>
+    <AssociationSet Name="category_book_book_id_foreign" Association="Self.category_book_book_id_foreign">
+      <End Role="books" EntitySet="books" />
+      <End Role="category_book" EntitySet="category_book" />
+    </AssociationSet>
+    <AssociationSet Name="borrows_user_id_foreign" Association="Self.borrows_user_id_foreign">
+      <End Role="users" EntitySet="users" />
+      <End Role="borrows" EntitySet="borrows" />
+    </AssociationSet>
+    <AssociationSet Name="category_book_category_id_foreign" Association="Self.category_book_category_id_foreign">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="category_book" EntitySet="category_book" />
+    </AssociationSet>
+    <AssociationSet Name="permission_role_permission_id_foreign" Association="Self.permission_role_permission_id_foreign">
+      <End Role="permissions" EntitySet="permissions" />
+      <End Role="permission_role" EntitySet="permission_role" />
+    </AssociationSet>
+    <AssociationSet Name="permission_role_role_id_foreign" Association="Self.permission_role_role_id_foreign">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="permission_role" EntitySet="permission_role" />
+    </AssociationSet>
+    <AssociationSet Name="role_user_role_id_foreign" Association="Self.role_user_role_id_foreign">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="role_user" EntitySet="role_user" />
+    </AssociationSet>
+    <AssociationSet Name="role_user_user_id_foreign" Association="Self.role_user_user_id_foreign">
+      <End Role="users" EntitySet="users" />
+      <End Role="role_user" EntitySet="role_user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
