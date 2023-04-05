@@ -10,6 +10,7 @@ namespace Nhom8_QLTV.src.views
         private Action action;
         private long userID;
         private string username;
+        private string oldUsername;
         private string email;
 
         public PasswordDialog(Action action, long userID)
@@ -22,6 +23,11 @@ namespace Nhom8_QLTV.src.views
         public void setUsername(string username)
         {
             this.username = username;
+        }
+
+        public void setOldUsername(string oldUsername)
+        {
+            this.oldUsername = oldUsername;
         }
 
         public void setEmail(string email)
@@ -67,13 +73,31 @@ namespace Nhom8_QLTV.src.views
                     break;
 
                 case Action.Delete:
+                    try
+                    {
+                        this.validated();
+
+                        DialogResult dialog = MessageBox.Show("Bạn có chắc muốn xóa tài khoản này?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                        if (dialog == DialogResult.Yes)
+                        {
+                            UserController.destroy(this.userID);
+
+                            MessageBox.Show("Xóa tài khoản thành công.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+
+                    } catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     break;
             }
         }
 
         private void PasswordDialog_Load(object sender, EventArgs e)
         {
-            this.label2.Text = "Tên tài khoản: " + this.username;
+            this.label2.Text = "Tên tài khoản: " + this.oldUsername;
         }
     }
 }

@@ -52,6 +52,7 @@
             // submitBtn
             // 
             this.submitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(114)))), ((int)(((byte)(255)))));
+            this.submitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.submitBtn.Font = new System.Drawing.Font("JetBrains Mono", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.submitBtn.ForeColor = System.Drawing.Color.White;

@@ -18,9 +18,7 @@ namespace Nhom8_QLTV
         private void createSession(user user)
         {
             var session = Session.getInstance();
-            session.setEmail(user.email);
-            session.setUsername(user.username);
-            session.setPassword(user.password);
+            session.setUser(user);
         }
 
         private void onLoginBtnClicked(object sender, EventArgs e)
@@ -34,7 +32,7 @@ namespace Nhom8_QLTV
             {
                 var user = AuthController.login(this.username.Text, this.password.Text);
                 this.createSession(user);
-                MessageBox.Show("Đăng nhập thành công.");
+                MessageBox.Show("Đăng nhập thành công.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
                 new Home().Show();
             }

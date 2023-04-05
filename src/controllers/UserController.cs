@@ -1,4 +1,5 @@
 ﻿using Nhom8_QLTV.src.models;
+using Nhom8_QLTV.src.utils;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -48,12 +49,38 @@ namespace Nhom8_QLTV.src.controllers
 
         public static void update(long id, user user)
         {
-            var u = db.users.FirstOrDefault(us => us.id == id);
-            u.username = user.username;
-            u.email = user.email;
-            u.updated_at = user.updated_at;
+            var authUser = Session.getInstance().getUser();
+            Authorization authorization = new Authorization();
 
-            db.SaveChanges();
+            var u = db.users.FirstOrDefault(us => us.id == id);
+
+            var canUpdate = authorization.CanUpdateUser(authUser, u);
+
+            if (canUpdate)
+            {
+                u.username = user.username;
+                u.email = user.email;
+                u.updated_at = user.updated_at;
+
+                db.SaveChanges();
+            }
+        }
+
+        public static void destroy(long id)
+        {
+            var authUser = Session.getInstance().getUser();
+            Authorization authorization = new Authorization();
+
+            var user = db.users.FirstOrDefault(x => x.id == id);
+
+            var canDelete = authorization.CanDeleteUser(authUser, user);
+
+            if (canDelete)
+            {
+                db.role_user.RemoveRange(user.role_user);
+                db.users.Remove(user);
+                db.SaveChanges();
+            }
         }
     }
 }

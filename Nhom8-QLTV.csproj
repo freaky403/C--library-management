@@ -106,6 +106,7 @@
     <Compile Include="src\models\user.cs">
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="src\utils\Authorization.cs" />
     <Compile Include="src\utils\HashPassword.cs" />
     <Compile Include="src\utils\Session.cs" />
     <Compile Include="src\utils\ThemeColor.cs" />

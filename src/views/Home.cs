@@ -1,12 +1,6 @@
 ﻿using Nhom8_QLTV.src.utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Nhom8_QLTV.src.views
@@ -27,7 +21,7 @@ namespace Nhom8_QLTV.src.views
         private Color selectThemeColor()
         {
             int index = this.random.Next(ThemeColor.ColorList.Count);
-            while(this.tempIndex == index)
+            while (this.tempIndex == index)
             {
                 index = this.random.Next(ThemeColor.ColorList.Count);
             }
@@ -92,7 +86,7 @@ namespace Nhom8_QLTV.src.views
 
         private void onFormLoad(object sender, EventArgs e)
         {
-            
+
         }
 
         private void onFormClosed(object sender, FormClosedEventArgs e)
@@ -102,17 +96,17 @@ namespace Nhom8_QLTV.src.views
 
         private void bookBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void homeBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void categoryBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void accountBtn_Click(object sender, EventArgs e)
@@ -122,17 +116,17 @@ namespace Nhom8_QLTV.src.views
 
         private void readerBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void borrowBtn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void reportbtn_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

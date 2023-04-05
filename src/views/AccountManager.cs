@@ -80,6 +80,7 @@ namespace Nhom8_QLTV.src.views
         private void saveBtn_Click(object sender, EventArgs e)
         {
             PasswordDialog dialog = new PasswordDialog(this.action, this.selectedUser);
+            dialog.setOldUsername(this.dataGridView1.CurrentRow.Cells[1].Value.ToString());
             dialog.setUsername(this.username.Text);
             dialog.setEmail(this.email.Text);
             dialog.ShowDialog();
@@ -90,6 +91,7 @@ namespace Nhom8_QLTV.src.views
         {
             this.action = Action.Delete;
             PasswordDialog dialog = new PasswordDialog(this.action, this.selectedUser);
+            dialog.setOldUsername(this.dataGridView1.CurrentRow.Cells[1].Value.ToString());
             dialog.setUsername(this.username.Text);
             dialog.setEmail(this.email.Text);
             dialog.ShowDialog();

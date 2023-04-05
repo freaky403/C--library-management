@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Nhom8_QLTV.src.models;
+using System;
 
 namespace Nhom8_QLTV.src.utils
 {
     internal class Session
     {
         private static Session instance;
-        private String username;
-        private String email;
-        private String password;
+        private static user user = null;
 
         private Session() { }
 
@@ -18,34 +17,14 @@ namespace Nhom8_QLTV.src.utils
             return instance;
         }
 
-        public void setUsername(String username)
+        public void setUser(user u)
         {
-            this.username = username;
+            user = u;
         }
 
-        public String getUsername()
+        public user getUser()
         {
-            return this.username;
-        }
-
-        public void setPassword(String password)
-        {
-            this.password = password;
-        }
-
-        public String getPassword()
-        {
-            return this.password;
-        }
-
-        public void setEmail(String email)
-        {
-            this.email = email;
-        }
-
-        public String getEmail()
-        {
-            return this.email;
+            return user;
         }
     }
 }
