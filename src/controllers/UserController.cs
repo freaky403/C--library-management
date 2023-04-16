@@ -1,5 +1,6 @@
 ﻿using Nhom8_QLTV.src.models;
 using Nhom8_QLTV.src.utils;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -60,7 +61,7 @@ namespace Nhom8_QLTV.src.controllers
             {
                 u.username = user.username;
                 u.email = user.email;
-                u.updated_at = user.updated_at;
+                u.updated_at = DateTime.Now;
 
                 db.SaveChanges();
             }

@@ -56,6 +56,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\controllers\AuthController.cs" />
+    <Compile Include="src\controllers\BookController.cs" />
+    <Compile Include="src\controllers\BorrowController.cs" />
+    <Compile Include="src\controllers\CategoryController.cs" />
+    <Compile Include="src\controllers\ReaderController.cs" />
+    <Compile Include="src\controllers\ReportController.cs" />
     <Compile Include="src\controllers\UserController.cs" />
     <Compile Include="src\interfaces\Enums.cs" />
     <Compile Include="src\models\book.cs">
@@ -108,6 +113,7 @@
     </Compile>
     <Compile Include="src\utils\Authorization.cs" />
     <Compile Include="src\utils\HashPassword.cs" />
+    <Compile Include="src\utils\ComboBoxItem.cs" />
     <Compile Include="src\utils\Session.cs" />
     <Compile Include="src\utils\ThemeColor.cs" />
     <Compile Include="src\views\AccountManager.cs">
@@ -115,6 +121,30 @@
     </Compile>
     <Compile Include="src\views\AccountManager.Designer.cs">
       <DependentUpon>AccountManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\views\BookManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\views\BookManager.Designer.cs">
+      <DependentUpon>BookManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\views\BookSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\views\BookSearch.Designer.cs">
+      <DependentUpon>BookSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\views\BorrowManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\views\BorrowManager.Designer.cs">
+      <DependentUpon>BorrowManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\views\CategoryManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\views\CategoryManager.Designer.cs">
+      <DependentUpon>CategoryManager.cs</DependentUpon>
     </Compile>
     <Compile Include="src\views\Login.cs">
       <SubType>Form</SubType>
@@ -130,17 +160,35 @@
     <Compile Include="src\views\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\views\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\views\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\views\PasswordDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\views\PasswordDialog.Designer.cs">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\views\ReaderManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\views\ReaderManager.Designer.cs">
+      <DependentUpon>ReaderManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\views\Register.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="src\views\Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\views\Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\views\Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -155,17 +203,38 @@
     <EmbeddedResource Include="src\views\AccountManager.resx">
       <DependentUpon>AccountManager.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\views\BookManager.resx">
+      <DependentUpon>BookManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\BookSearch.resx">
+      <DependentUpon>BookSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\BorrowManager.resx">
+      <DependentUpon>BorrowManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\CategoryManager.resx">
+      <DependentUpon>CategoryManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\views\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\views\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\views\PasswordDialog.resx">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\views\ReaderManager.resx">
+      <DependentUpon>ReaderManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\views\Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\views\Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -188,7 +257,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -209,6 +277,11 @@
     <None Include="Resources\Edit 2_24x24.png" />
     <None Include="Resources\Document 2_24x24.png" />
     <None Include="Resources\Trash can_24x24.png" />
+    <None Include="Resources\Search.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Logout.png" />
     <Content Include="src\models\LibraryModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LibraryModel.edmx</DependentUpon>

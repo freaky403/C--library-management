@@ -16,6 +16,7 @@ namespace Nhom8_QLTV.src.views
         {
             InitializeComponent();
             this.random = new Random();
+            this.openChildForm(new Main(), null);
         }
 
         private Color selectThemeColor()
@@ -86,7 +87,7 @@ namespace Nhom8_QLTV.src.views
 
         private void onFormLoad(object sender, EventArgs e)
         {
-
+            this.activeForm = new Main();
         }
 
         private void onFormClosed(object sender, FormClosedEventArgs e)
@@ -96,17 +97,17 @@ namespace Nhom8_QLTV.src.views
 
         private void bookBtn_Click(object sender, EventArgs e)
         {
-
+            this.openChildForm(new BookManager(), sender);
         }
 
         private void homeBtn_Click(object sender, EventArgs e)
         {
-
+            this.openChildForm(new Main(), sender);
         }
 
         private void categoryBtn_Click(object sender, EventArgs e)
         {
-
+            this.openChildForm(new CategoryManager(), sender);
         }
 
         private void accountBtn_Click(object sender, EventArgs e)
@@ -116,17 +117,23 @@ namespace Nhom8_QLTV.src.views
 
         private void readerBtn_Click(object sender, EventArgs e)
         {
-
+            this.openChildForm(new ReaderManager(), sender);
         }
 
         private void borrowBtn_Click(object sender, EventArgs e)
         {
-
+            this.openChildForm(new BorrowManager(), sender);
         }
 
         private void reportbtn_Click(object sender, EventArgs e)
         {
+            this.openChildForm(new Report(), sender);
+        }
 
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new Login().Show();
         }
     }
 }

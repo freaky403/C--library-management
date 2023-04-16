@@ -21,7 +21,7 @@ namespace Nhom8_QLTV.src.models
         }
     
         public long id { get; set; }
-        public long user_id { get; set; }
+        public Nullable<long> user_id { get; set; }
         public System.DateTime borrowed_date { get; set; }
         public Nullable<System.DateTime> expires_at { get; set; }
         public Nullable<System.DateTime> return_at { get; set; }

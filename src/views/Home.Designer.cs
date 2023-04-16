@@ -33,6 +33,7 @@
             this.menuHeadingPanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.menuPanel = new System.Windows.Forms.Panel();
+            this.logoutBtn = new System.Windows.Forms.Button();
             this.reportbtn = new System.Windows.Forms.Button();
             this.borrowBtn = new System.Windows.Forms.Button();
             this.accountBtn = new System.Windows.Forms.Button();
@@ -91,6 +92,7 @@
             // menuPanel
             // 
             this.menuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.menuPanel.Controls.Add(this.logoutBtn);
             this.menuPanel.Controls.Add(this.reportbtn);
             this.menuPanel.Controls.Add(this.borrowBtn);
             this.menuPanel.Controls.Add(this.accountBtn);
@@ -104,6 +106,24 @@
             this.menuPanel.Name = "menuPanel";
             this.menuPanel.Size = new System.Drawing.Size(360, 802);
             this.menuPanel.TabIndex = 0;
+            // 
+            // logoutBtn
+            // 
+            this.logoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(114)))), ((int)(((byte)(255)))));
+            this.logoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.logoutBtn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logoutBtn.Font = new System.Drawing.Font("JetBrains Mono Medium", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.logoutBtn.Image = global::Nhom8_QLTV.Properties.Resources.Logout;
+            this.logoutBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.logoutBtn.Location = new System.Drawing.Point(0, 580);
+            this.logoutBtn.Name = "logoutBtn";
+            this.logoutBtn.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.logoutBtn.Size = new System.Drawing.Size(360, 70);
+            this.logoutBtn.TabIndex = 8;
+            this.logoutBtn.Text = "     Đăng xuất";
+            this.logoutBtn.UseVisualStyleBackColor = false;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
             // 
             // reportbtn
             // 
@@ -275,5 +295,6 @@
         private System.Windows.Forms.Panel menuPanel;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label title;
+        private System.Windows.Forms.Button logoutBtn;
     }
 }

@@ -17,4 +17,5 @@ public enum Action
 {
     Edit = 0,
     Delete = 1,
+    Add = 2,
 }

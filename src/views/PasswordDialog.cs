@@ -58,7 +58,6 @@ namespace Nhom8_QLTV.src.views
                         {
                             username = this.username,
                             email = this.email,
-                            updated_at = DateTime.Now,
                         };
 
                         UserController.update(this.userID, user);

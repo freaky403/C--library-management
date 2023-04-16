@@ -5,9 +5,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="book_id" Type="bigint" Nullable="false" />
-    <Property Name="borrow_id" Type="bigint" Nullable="false" />
-    <Property Name="reader_id" Type="bigint" Nullable="false" />
+    <Property Name="book_id" Type="bigint" />
+    <Property Name="borrow_id" Type="bigint" />
+    <Property Name="reader_id" Type="bigint" />
     <Property Name="quantity" Type="int" />
     <Property Name="created_at" Type="datetime" />
     <Property Name="updated_at" Type="datetime" />
@@ -30,7 +30,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="user_id" Type="bigint" Nullable="false" />
+    <Property Name="user_id" Type="bigint" />
     <Property Name="borrowed_date" Type="datetime" Nullable="false" />
     <Property Name="expires_at" Type="datetime" />
     <Property Name="return_at" Type="datetime" />
@@ -51,8 +51,8 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="category_id" Type="bigint" Nullable="false" />
-    <Property Name="book_id" Type="bigint" Nullable="false" />
+    <Property Name="category_id" Type="bigint" />
+    <Property Name="book_id" Type="bigint" />
     <Property Name="created_at" Type="datetime" />
     <Property Name="updated_at" Type="datetime" />
   </EntityType>
@@ -121,7 +121,7 @@
     <Property Name="updated_at" Type="datetime" />
   </EntityType>
   <Association Name="book_borrow_book_id_foreign">
-    <End Role="books" Type="Self.books" Multiplicity="1" />
+    <End Role="books" Type="Self.books" Multiplicity="0..1" />
     <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="books">
@@ -133,7 +133,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="book_borrow_borrow_id_foreign">
-    <End Role="borrows" Type="Self.borrows" Multiplicity="1" />
+    <End Role="borrows" Type="Self.borrows" Multiplicity="0..1" />
     <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="borrows">
@@ -145,7 +145,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="book_borrow_reader_id_foreign">
-    <End Role="readers" Type="Self.readers" Multiplicity="1" />
+    <End Role="readers" Type="Self.readers" Multiplicity="0..1" />
     <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="readers">
@@ -157,7 +157,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="borrows_user_id_foreign">
-    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
     <End Role="borrows" Type="Self.borrows" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="users">
@@ -169,7 +169,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="category_book_book_id_foreign">
-    <End Role="books" Type="Self.books" Multiplicity="1" />
+    <End Role="books" Type="Self.books" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="category_book" Type="Self.category_book" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="books">
@@ -181,7 +183,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="category_book_category_id_foreign">
-    <End Role="categories" Type="Self.categories" Multiplicity="1" />
+    <End Role="categories" Type="Self.categories" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="category_book" Type="Self.category_book" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="categories">

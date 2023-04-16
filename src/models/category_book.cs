@@ -15,8 +15,8 @@ namespace Nhom8_QLTV.src.models
     public partial class category_book
     {
         public long id { get; set; }
-        public long category_id { get; set; }
-        public long book_id { get; set; }
+        public Nullable<long> category_id { get; set; }
+        public Nullable<long> book_id { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
     

@@ -18,3 +18,10 @@ E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.Register.resour
 E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.Home.resources
 E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.AccountManager.resources
 E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.PasswordDialog.resources
+E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.BookManager.resources
+E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.Main.resources
+E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.BookSearch.resources
+E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.CategoryManager.resources
+E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.ReaderManager.resources
+E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.BorrowManager.resources
+E:\laragon\www\Winform\Nhom8-QLTV\obj\Debug\Nhom8_QLTV.src.views.Report.resources

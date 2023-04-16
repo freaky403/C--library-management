@@ -5,9 +5,9 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="book_id" Type="Int64" Nullable="false" />
-    <Property Name="borrow_id" Type="Int64" Nullable="false" />
-    <Property Name="reader_id" Type="Int64" Nullable="false" />
+    <Property Name="book_id" Type="Int64" />
+    <Property Name="borrow_id" Type="Int64" />
+    <Property Name="reader_id" Type="Int64" />
     <Property Name="quantity" Type="Int32" />
     <Property Name="created_at" Type="DateTime" Precision="3" />
     <Property Name="updated_at" Type="DateTime" Precision="3" />
@@ -35,7 +35,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="user_id" Type="Int64" Nullable="false" />
+    <Property Name="user_id" Type="Int64" />
     <Property Name="borrowed_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="expires_at" Type="DateTime" Precision="3" />
     <Property Name="return_at" Type="DateTime" Precision="3" />
@@ -59,8 +59,8 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="category_id" Type="Int64" Nullable="false" />
-    <Property Name="book_id" Type="Int64" Nullable="false" />
+    <Property Name="category_id" Type="Int64" />
+    <Property Name="book_id" Type="Int64" />
     <Property Name="created_at" Type="DateTime" Precision="3" />
     <Property Name="updated_at" Type="DateTime" Precision="3" />
     <NavigationProperty Name="book" Relationship="Self.category_book_book_id_foreign" FromRole="category_book" ToRole="books" />
@@ -141,7 +141,7 @@
     <NavigationProperty Name="role_user" Relationship="Self.role_user_user_id_foreign" FromRole="users" ToRole="role_user" />
   </EntityType>
   <Association Name="book_borrow_book_id_foreign">
-    <End Role="books" Type="Self.book" Multiplicity="1" />
+    <End Role="books" Type="Self.book" Multiplicity="0..1" />
     <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="books">
@@ -153,7 +153,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="book_borrow_borrow_id_foreign">
-    <End Role="borrows" Type="Self.borrow" Multiplicity="1" />
+    <End Role="borrows" Type="Self.borrow" Multiplicity="0..1" />
     <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="borrows">
@@ -165,7 +165,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="book_borrow_reader_id_foreign">
-    <End Role="readers" Type="Self.reader" Multiplicity="1" />
+    <End Role="readers" Type="Self.reader" Multiplicity="0..1" />
     <End Role="book_borrow" Type="Self.book_borrow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="readers">
@@ -177,7 +177,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="category_book_book_id_foreign">
-    <End Role="books" Type="Self.book" Multiplicity="1" />
+    <End Role="books" Type="Self.book" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="category_book" Type="Self.category_book" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="books">
@@ -189,7 +191,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="borrows_user_id_foreign">
-    <End Role="users" Type="Self.user" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="0..1" />
     <End Role="borrows" Type="Self.borrow" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="users">
@@ -201,7 +203,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="category_book_category_id_foreign">
-    <End Role="categories" Type="Self.category" Multiplicity="1" />
+    <End Role="categories" Type="Self.category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="category_book" Type="Self.category_book" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="categories">
